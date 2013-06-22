@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FreeGen - Frequency Generator</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <script src="http://www.java.com/js/deployJava.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Frequency Generator</h1>
+    </header>
+
+    <section>
+      <div id="left">
+        <!--<script>-->
+          <!--var attributes = {code:'FreeGenApplet.class',-->
+            <!--archive:'http://dglmoore.com/FreeGen/FreeGen.jar',-->
+            <!--width:550, height:500};-->
+          <!--var parameters = {jnlp_href:'http://dglmoore.com/FreeGen/FreeGen.jnlp'};-->
+          <!--var version = '1.6';-->
+          <!--deployJava.runApplet(attributes, parameters, version);-->
+        <!--</script>-->
+        <applet archive="FreeGen.jar" code="FreeGenApplet" width=550 height=500>
+          <param name="java_arguments" value="-Xmx200m">
+        </applet>
+      </div>
+      <div id="right">
+        <header>
+          <h1>Directions:</h1>
+          <p> FreeGen is a small java app for generating, and panning between,
+          frequencies. Its use is fairly straight forward.</p>
+          <ul>
+            <li>To create a frequency generator, select the generator type from
+            the "New" menu.</li>
+            <li>To remove a frequency generator, right-click and select
+            "Remove".</li>
+          </ul>
+
+          <p>Once you have active frequency generators: </p>
+          <h2>Pure Tone</h2>
+          <ul>
+            <li>As the name suggests, you only have one frequency, "Freq 1". It
+            can be adjusted with the keyboard and is between 10hz and
+            25,000hz.</li>
+
+            <li>The Play/Stop button toggles the state of the generator.</li>
+
+            <li>Adjusting the "Vol." slider adjusts the volume.</li>
+          </ul>
+          <h2>Panning</h2>
+            <p> In addition to the settings allow for Pure Tones, Panning
+            generators also have:<p>
+            <ul>
+              <li>"Freq2" is the second frequency in the pan. It is not
+              necessarily required to be greater than "Freq1".</li>
+
+              <li>The period is the time to complete a cycle in seconds.</li>
+            </ul>
+        </header>
+      </div>
+    </section>
+
+    <section id="alternatives">
+      <h1>Alternative Usage:</h1>
+      <p>In the case that, for some reason, the applet will not load you have two
+      options:<p>
+      <h2>Option 1: Java Web Start</h2>
+      <p>
+        Java Web Start will take care of the downloading and running of a full,
+        application version. To give it a try, select the launch link that
+        follows.
+      <p>
+      <p>
+        <script>
+          deployJava.launchButtonPNG='http://docs.oracle.com/javase/tutorial/images/jws-launch-button.png';
+          var url = "http://dglmoore.com/FreeGen/FreeGen.jnlp";
+          deployJava.createWebStartLaunchButton(url, '1.6.0');
+        </script>
+      </p>
+
+      <h2>Option 2: Executable Jar</h2>
+      <p>
+        You can download an executable jar with has both the stand-alone app,
+        the applet, and the source:
+        <a href="http://dglmoore.com/FreeGen/FreeGen.jar">FreeGen.jar</a>.
+      </p>
+
+      <p>
+        To execute the jar, first try just double clicking on it. If it
+        launches, then you are golden. If it doesn't launch, you can run
+        "java -jar FreeGen.jar" at the command line.
+      </p>
+    </section>
+
+    <footer>
+      <h1>Copyright</h1>
+      <p>This software is licenced under the GNU Public License version 3.0,
+      GPL3. It is completely open source, which can be found in the jar linked
+      to above.</p>
+
+      <span>Copyright 2012. Douglas Moore, Baylor University, Department of
+        Physics</span>
+    </footer>
+  </body>
+</html>

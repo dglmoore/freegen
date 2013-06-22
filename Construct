@@ -1,0 +1,89 @@
+#!/bin/zsh
+
+. $HOME/.zsh/colorize.zsh
+
+SOURCEDIR="src"
+CLASSPATH=".:$SOURCEDIR"
+
+UPLOAD="upload"
+
+MAIN="FreeGen"
+MANIFEST="Manifest"
+APP="$MAIN.java"
+APPLET=$MAIN"Applet.java"
+HTML="index.html"
+JAR="$MAIN.jar"
+JNLP="$MAIN.jnlp"
+SERVER="dglmoore@dglmoore.com:html/FreeGen"
+
+build() {
+  stylize "Building..." $GREEN
+
+  javac -Xlint:deprecation -d . -cp $CLASSPATH $SOURCEDIR/$APP
+  javac -Xlint:deprecation -d . -cp $CLASSPATH $SOURCEDIR/$APPLET
+
+  echo 'Manifest-Version: 1.0' > $MANIFEST;
+  echo "Main-Class: $MAIN" >> $MANIFEST;
+  jar cmf $MANIFEST $UPLOAD/$MAIN.jar *.class $SOURCEDIR/*.java LICENSE
+
+  if [ $? = 0 ]; then
+    stylize "Build Succeeded." $GREEN
+  else
+    stylize "Build Failed." $RED
+  fi
+}
+
+clean() {
+  stylize "Cleaning..." $GREEN
+  for dir in $(echo $CLASSPATH | sed 's/:/ /g'); do
+    for file in $(ls $dir | grep .class$); do
+      rm $dir/$file
+    done
+  done
+  rm -f $JAR
+  rm -f $MANIFEST
+  stylize "Clean." $GREEN
+}
+
+runApplet() {
+  stylize "** cons: Running $MAIN..." $GREEN
+  appletviewer $UPLOAD/$HTML
+  state=$?
+  if [ "$state" = "0" ]; then
+    stylize "** cons: $MAIN Succeeded." $GREEN
+  else
+    stylize "** cons: $MAIN Failed." $RED
+  fi
+  exit $state
+}
+
+runApp() {
+  stylize "** cons: Running $MAIN..." $GREEN
+  java -jar "$UPLOAD/$JAR"
+  state=$?
+  if [ "$state" = "0" ]; then
+    stylize "** cons: $MAIN Succeeded." $GREEN
+  else
+    stylize "** cons: $MAIN Failed." $RED
+  fi
+  exit $state
+}
+
+deploy() {
+  for f in $(ls $UPLOAD); do
+    scp $UPLOAD/$f $SERVER/$f
+  done
+}
+
+if [ $# = 0 ]; then
+  build
+else
+  case $1 in
+    "build"    ) build;;
+    "clean"    ) clean;;
+    "runApp"   ) runApp;;
+    "runApplet") runApplet;;
+    "deploy"   ) deploy;;
+    "*"        ) usage;;
+  esac
+fi
