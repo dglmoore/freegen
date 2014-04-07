@@ -6,10 +6,10 @@
 
 import javax.swing.JFrame;
 public class FreeGen {
-    public static void main(String args[]) {
-        FreeGenApp app = new FreeGenApp();
-        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        app.setSize(550,500);
-        app.setVisible(true);
-    }
+  public static void main(String args[]) {
+    FreeGenApp app = new FreeGenApp();
+    app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    app.setSize(550,500);
+    app.setVisible(true);
+  }
 }

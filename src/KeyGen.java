@@ -8,9 +8,9 @@ import java.security.SecureRandom;
 import java.math.BigInteger;
 
 public final class KeyGen {
-    private SecureRandom random = new SecureRandom();
+  private SecureRandom random = new SecureRandom();
 
-    public String nextID() {
-        return new BigInteger(130, random).toString(32);
-    }
+  public String nextID() {
+    return new BigInteger(130, random).toString(32);
+  }
 }

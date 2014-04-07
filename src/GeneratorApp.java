@@ -7,7 +7,7 @@
 import java.awt.Color;
 
 public interface GeneratorApp {
-    public void addSynth(SynthType type);
-    public void removeSynth(String id);
-    public void displayMessage(String msg, Color color);
+  public void addSynth(SynthType type);
+  public void removeSynth(String id);
+  public void displayMessage(String msg, Color color);
 }

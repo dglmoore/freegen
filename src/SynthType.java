@@ -5,6 +5,6 @@
  */
 
 public enum SynthType {
-    PURE,
-    PANNING
+  PURE,
+  PANNING
 }
