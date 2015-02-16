@@ -361,3 +361,4 @@ public class Synthesizer<AppClass extends Container & GeneratorApp> extends Obje
   public boolean isRunning() {
     return synth != null && synth.isRunning();
   }
+}
